@@ -1,5 +1,46 @@
 {% extends "layouts/wrapper.njk" %}
 
 {% block body %}
-<p>hello world. You are awesome!</p>
+<form action="/diary-create" method="post">
+  {{
+    textInput({
+      label: "Summary",
+      id: "summary",
+      name: "summary"
+    })
+  }}
+
+  {{
+    textInput({
+      label: "Date",
+      hint: {
+        text: "Leave blank for now, or use natural language"
+      },
+      id: "date",
+      name: "date"
+    })
+  }}
+
+  {{
+    textInput({
+      label: "Tags",
+      hint: {
+        text: "comma seperated list"
+      },
+      id: "tags",
+      name: "tags"
+    })
+  }}
+
+  {{
+    textArea({
+      label: "Content",
+      id: "content",
+      name: "content"
+    })
+  }}
+
+  <button>Continue</button>
+
+</form>
 {% endblock %}

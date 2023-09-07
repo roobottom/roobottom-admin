@@ -1,0 +1,9 @@
+{% macro textInput(params) %}
+<div class="form-group">
+  <label class="label" for="event-name">{{ params.label }}</label>
+  {% if params.hint %}
+  <div id="{{ parms.id }}-hint" class="hint">{{ params.hint.text }}</div>
+  {% endif %}
+  <input class="input" id="{{ params.id }}" name="{{ params.name }}" type="text" {% if params.hint %}aria-describedby="{{ parms.id }}-hint"{% endif %}>
+</div>
+{% endmacro %}

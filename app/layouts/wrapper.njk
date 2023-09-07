@@ -1,3 +1,6 @@
+{% from "components/text-input.njk" import textInput %}
+{% from "components/text-area.njk" import textArea %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,7 +8,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="robots" content="nofollow">
+  <link rel="stylesheet" href="/assets/css/main.css">
   <title>{{ title }} - Roobottom admin</title>
+  <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v3.x.x/dist/cdn.min.js" defer></script>
 </head>
 <body>
   {% block body %}

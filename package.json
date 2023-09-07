@@ -4,16 +4,21 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "concurrently \"nodemon index.js\" \"less-watch-compiler\""
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@octokit/rest": "^20.0.1",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
-    "express-basic-auth": "^1.2.1"
+    "express-basic-auth": "^1.2.1",
+    "gray-matter": "^4.0.3",
+    "less": "^4.2.0"
   },
   "devDependencies": {
+    "concurrently": "^8.2.1",
+    "less-watch-compiler": "^1.16.3",
     "nodemon": "^3.0.1"
   }
 }
