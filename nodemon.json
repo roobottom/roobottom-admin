@@ -1,0 +1,6 @@
+{
+  "watch": [
+    "app"
+  ],
+  "ext": "njk, js, less, sass"
+}
