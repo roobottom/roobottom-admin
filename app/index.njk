@@ -1,6 +1,10 @@
 {% extends "layouts/wrapper.njk" %}
 
 {% block body %}
+{% if errors %}
+<h2>There are errors in the form:</h2>
+{{ errors | dump }}
+{% endif %}
 <form action="/diary-create" method="post">
   {{
     textInput({
