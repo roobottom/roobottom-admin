@@ -1,0 +1,17 @@
+{% extends "../layouts/wrapper.njk" %}
+
+{% block body %}
+<form action="/diary/process-alt" method="post">
+{% for photo in photos %}
+  <img src="/{{ photo.url }}" width="200">
+  {{
+    textInput({
+      label: "Alt for this photo",
+      id: "alt-" + loop.index0,
+      name: "alt-" + loop.index0
+    })
+  }}
+{% endfor %}
+<button type="submit">Continue</button>
+</form>
+{% endblock %}

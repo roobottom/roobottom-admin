@@ -1,0 +1,11 @@
+{% extends "../layouts/wrapper.njk" %}
+
+{% block body %}
+<form action="/diary/process-photos" method="post" enctype="multipart/form-data">
+  <div>
+    <label for="photos">Choose photos to upload:</label>
+    <input type="file" id="photos" name="photos" multiple>
+  </div>
+  <button>Continue</button>
+</form>
+{% endblock %}
