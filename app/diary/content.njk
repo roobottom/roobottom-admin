@@ -1,14 +1,11 @@
 {% extends "layouts/wrapper.njk" %}
 
 {% block body %}
-{% if markdownDataString %}
-<pre>{{ markdownDataString }}</pre>
-{% endif %}
 {% if errors %}
 <h2>There are errors in the form:</h2>
 {{ errors | dump }}
 {% endif %}
-<form action="/diary-create" method="post">
+<form action="/diary/process-content" method="post">
   {{
     textInput({
       label: "Summary",

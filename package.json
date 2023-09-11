@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "concurrently \"nodemon index.js\" \"less-watch-compiler\""
+    "start": "concurrently \"nodemon index.js\" \"less-watch-compiler\"",
+    "test": "mocha"
   },
   "author": "",
   "license": "ISC",
@@ -23,8 +24,11 @@
     "nunjucks": "^3.2.4"
   },
   "devDependencies": {
+    "chai": "^4.3.8",
     "concurrently": "^8.2.1",
     "less-watch-compiler": "^1.16.3",
-    "nodemon": "^3.0.1"
+    "mocha": "^10.2.0",
+    "nodemon": "^3.0.1",
+    "supertest": "^6.3.3"
   }
 }

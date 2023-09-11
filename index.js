@@ -28,7 +28,7 @@ app.get('/', (req, res) => {
   res.render('index');
 });
 
-app.use('/diary-create', require('./lib/diary-create.js'));
+//app.use('/diary-create', require('./lib/diary-create.js'));
 
 app.get('/diary/photos', (req, res) => {
   res.render('diary/photos');
@@ -48,7 +48,11 @@ app.get('/diary/alt', (req, res) => {
 
 app.use('/diary/process-alt', require('./lib/routes/process-alt.js'));
 
+app.get('/diary/content', (req, res) => {
+  res.render('diary/content');
+});
 
+app.use('/diary/process-content', require('./lib/routes/process-content.js').router);
 
 
 // app.get('/diary/new', (req, res) => {
