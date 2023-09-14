@@ -1,11 +1,19 @@
 {% extends "../layouts/wrapper.njk" %}
+{% from "../govuk-frontend/components/file-upload/macro.njk" import govukFileUpload %}
+{% from "../govuk-frontend/components/button/macro.njk" import govukButton %}
 
-{% block body %}
+{% block content %}
 <form action="/diary/process-photos" method="post" enctype="multipart/form-data">
-  <div>
-    <label for="photos">Choose photos to upload:</label>
-    <input type="file" id="photos" name="photos" multiple>
-  </div>
-  <button>Continue</button>
+  {{ govukFileUpload({
+    id: "photos",
+    name: "photos",
+    label: {
+      text: "Choose photos to upload"
+    },
+    multiple: true
+  }) }}
+  {{ govukButton({
+    text: "Save and continue"
+  }) }}
 </form>
 {% endblock %}

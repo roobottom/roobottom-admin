@@ -15,7 +15,7 @@ app.use(session({
   saveUninitialized: true,
 }));
 
-nunjucks.configure('app', { //the name of the folder with the njk files
+nunjucks.configure('app', {
   autoescape: true,
   express: app,
 });

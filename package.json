@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "concurrently \"nodemon index.js\" \"less-watch-compiler\"",
+    "start": "concurrently \"nodemon index.js\" \"node prebuild.js & npx node-sass app/sass/ -o app/assets/css & node-sass -w app/sass/ -o app/assets/css\"",
     "test": "mocha"
   },
   "author": "",
@@ -17,18 +17,19 @@
     "express-basic-auth": "^1.2.1",
     "express-session": "^1.17.3",
     "express-validator": "^7.0.1",
+    "fs-extra": "^11.1.1",
+    "govuk-frontend": "^4.7.0",
     "gray-matter": "^4.0.3",
-    "less": "^4.2.0",
     "mime": "^3.0.0",
     "multer": "^1.4.5-lts.1",
     "nock": "^13.3.3",
+    "node-sass": "^9.0.0",
     "nunjucks": "^3.2.4",
     "octokit-commit-multiple-files": "^5.0.0"
   },
   "devDependencies": {
     "chai": "^4.3.8",
     "concurrently": "^8.2.1",
-    "less-watch-compiler": "^1.16.3",
     "mocha": "^10.2.0",
     "nodemon": "^3.0.1",
     "supertest": "^6.3.3"
