@@ -2,10 +2,61 @@
 {% from "../govuk-frontend/components/summary-list/macro.njk" import govukSummaryList %}
 {% from "../govuk-frontend/components/panel/macro.njk" import govukPanel %}
 
+{% set photoRows = [] %}
+{% if photos %}
+  {% for photo in photos %}
+    {% set row = {
+      key: { text: "Photo " + loop.index },
+      value: { html: '<img src="/' + photo.url + '" width="300">' }
+    } %}
+    {% set descriptionRow = {
+      key: { text: "Description of photo " + loop.index },
+      value: { text: photo.alt }
+    } %}
+    {% set photoRows = photoRows.concat([row, descriptionRow]) %}
+  {% endfor %}
+{% endif %}
+
+{% set rows = [
+    {
+      key: {
+        text: "Summary"
+      },
+      value: {
+        text: summary
+      }
+    },{
+      key: {
+        text: "Date"
+      },
+      value: {
+        text: date
+      }
+    },{
+      key: {
+        text: "Tags"
+      },
+      value: {
+        text: tags
+      }
+    } if tags
+] %}
+
+{% for photoRow in photoRows %}
+  {{ rows.push(photoRow) }}
+{% endfor %}
+
 {% block content %}
 {{ govukPanel({
   titleText: "Diary post created"
 }) }}
+
+
+
+{{ govukSummaryList({
+  rows: rows
+}) }}
+
 {# <dl class="summary">
   <div class="summary-row">
     <dt>Summary</dt>

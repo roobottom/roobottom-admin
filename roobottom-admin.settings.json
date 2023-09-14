@@ -3,5 +3,6 @@
   "repoName": "roobottom-2022",
   "branchName": "admin-test",
   "committerName": "roobottom",
-  "committerEmail": "roo@roodesign.co.uk"
+  "committerEmail": "roo@roodesign.co.uk",
+  "uploadsPath": "public/uploads/"
 }
