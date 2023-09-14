@@ -3,6 +3,7 @@
 {% from "../govuk-frontend/components/button/macro.njk" import govukButton %}
 
 {% block content %}
+<h1 class="govuk-heading-xl">Upload photos</h1>
 <form action="/diary/process-photos" method="post" enctype="multipart/form-data">
   {{ govukFileUpload({
     id: "photos",

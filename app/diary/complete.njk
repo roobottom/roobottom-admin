@@ -1,10 +1,12 @@
 {% extends "layouts/wrapper.njk" %}
+{% from "../govuk-frontend/components/summary-list/macro.njk" import govukSummaryList %}
+{% from "../govuk-frontend/components/panel/macro.njk" import govukPanel %}
 
-{% block body %}
-<div class="panel">
-  <h1 class="panel-title">Diary post created</h1>
-</div>
-<dl class="summary">
+{% block content %}
+{{ govukPanel({
+  titleText: "Diary post created"
+}) }}
+{# <dl class="summary">
   <div class="summary-row">
     <dt>Summary</dt>
     <dd>{{ summary }}</dd>
@@ -32,5 +34,5 @@
   </div>
   {% endfor %}
   
-</dl>
+</dl> #}
 {% endblock %}

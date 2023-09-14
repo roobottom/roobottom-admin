@@ -1,17 +1,23 @@
 {% extends "../layouts/wrapper.njk" %}
+{% from "../govuk-frontend/components/button/macro.njk" import govukButton %}
+{% from "../govuk-frontend/components/input/macro.njk" import govukInput %}
 
-{% block body %}
+{% block content %}
+<h1 class="govuk-heading-xl">Describe images</h1>
 <form action="/diary/process-alt" method="post">
 {% for photo in photos %}
   <img src="/{{ photo.url }}" width="200">
-  {{
-    textInput({
-      label: "Alt for this photo",
-      id: "alt-" + loop.index0,
-      name: "alt-" + loop.index0
-    })
-  }}
+  {{ govukInput({
+    label: {
+      text: "Describe this photo"
+    },
+    id: "alt-" + loop.index0,
+    name: "alt-" + loop.index0,
+    classes: 'govuk-!-margin-bottom-5'
+  }) }}
 {% endfor %}
-<button type="submit">Continue</button>
+{{ govukButton({
+  text: "Save and continue"
+}) }}
 </form>
 {% endblock %}

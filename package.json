@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "concurrently \"nodemon index.js\" \"node prebuild.js & npx node-sass app/sass/ -o app/assets/css & node-sass -w app/sass/ -o app/assets/css\"",
+    "start": "concurrently \"nodemon index.js\" \"npx node-sass app/sass/ -o public/css & node-sass -w app/sass/ -o public/css\"",
     "test": "mocha"
   },
   "author": "",

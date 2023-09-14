@@ -6,7 +6,7 @@ const app = express();
 
 app.use(express.urlencoded({ extended: true }));
 app.use(basicAuth);
-app.use(express.static('app'));
+app.use(express.static('public'));
 app.use('/uploads', express.static('app/uploads'));
 
 app.use(session({

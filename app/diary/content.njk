@@ -1,33 +1,44 @@
 {% extends "layouts/wrapper.njk" %}
+{% from "../govuk-frontend/components/input/macro.njk" import govukInput %}
+{% from "../govuk-frontend/components/textarea/macro.njk" import govukTextarea %}
+{% from "../govuk-frontend/components/button/macro.njk" import govukButton %}
 
-{% block body %}
-{% if errors %}
-<h2>There are errors in the form:</h2>
-{{ errors | dump }}
-{% endif %}
+{% block content %}
+
+<h1 class="govuk-heading-xl">Diary post content</h1>
+
 <form action="/diary/process-content" method="post">
   {{
-    textInput({
-      label: "Summary",
+    govukInput({
+      label: {
+        text: "Summary"
+      },
       id: "summary",
-      name: "summary"
+      name: "summary",
+      hint: {
+        text: "What this post is about in a few words"
+      }
     })
   }}
 
   {{
-    textInput({
-      label: "Date",
-      hint: {
-        text: "Leave blank for now, or use natural language"
+    govukInput({
+      label: {
+        text: "Date"
       },
       id: "date",
-      name: "date"
+      name: "date",
+      hint: {
+        text: "Use natural language or leave blank for now. Examples: “today” or “last tuesday afternoon”"
+      }
     })
   }}
 
   {{
-    textInput({
-      label: "Tags",
+    govukInput({
+      label: {
+        text: "Tags"
+      },
       hint: {
         text: "comma seperated list"
       },
@@ -36,15 +47,20 @@
     })
   }}
 
-  {{
-    textArea({
-      label: "Content",
-      id: "content",
-      name: "content"
-    })
-  }}
+  {{ govukTextarea({
+    name: "content",
+    id: "content",
+    label: {
+      text: "Content"
+    },
+    hint: {
+      text: "You can use Markdown."
+    }
+  }) }}
 
-  <button>Continue</button>
+  {{ govukButton({
+    text: "Save and continue"
+  }) }}
 
 </form>
 {% endblock %}
