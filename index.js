@@ -5,6 +5,7 @@ const session = require('express-session');
 const redis = require('redis');
 const app = express();
 const RedisStore = require("connect-redis").default;
+const port = process.env.PORT || 3333;
 
 // Initialize the Redis client
 let redisClient;
@@ -75,10 +76,6 @@ app.get('/diary/content', (req, res) => {
 app.use('/diary/process-content', require('./lib/routes/process-content.js').router);
 
 
-// app.get('/diary/new', (req, res) => {
-//   res.send('New diary post form');
-// });
-
 app.use((err, req, res, next) => {
   console.error(err.stack);
 
@@ -104,6 +101,6 @@ app.use((err, req, res, next) => {
 
 
 
-app.listen(3000, () => {
-  console.log('Server is running on http://localhost:3000');
+app.listen(port, () => {
+  console.log(`Server is running on port http://localhost:${port}`);
 });
