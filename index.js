@@ -1,9 +1,23 @@
 const express = require('express');
 const nunjucks = require('nunjucks');
 const basicAuth = require('./lib/auth.js');
-const session = require('express-session'); 
+const session = require('express-session');
+const redis = require('redis');
 const app = express();
-const RedisStore = require("connect-redis").default
+const RedisStore = require("connect-redis").default;
+
+// Initialize the Redis client
+let redisClient;
+if (process.env.NODE_ENV === 'production') {
+  redisClient = redis.createClient({
+    url: process.env.REDIS_URL // Set your Redis server URL here
+  });
+
+  // Handle Redis client errors
+  redisClient.on('error', (err) => {
+    console.error('Redis error:', err);
+  });
+}
 
 app.use(express.urlencoded({ extended: true }));
 app.use(basicAuth);
@@ -17,7 +31,7 @@ let sessionOptions = {
 };
 
 if (process.env.NODE_ENV === 'production') {
-  sessionOptions.store = new RedisStore({ url: process.env.REDIS_URL });
+  sessionOptions.store = new RedisStore({ client: redisClient, prefix: "myapp:" });
 }
 
 app.use(session(sessionOptions));
@@ -30,12 +44,11 @@ nunjucks.configure('app', {
 app.set('view engine', 'njk');
 
 
+
 //application routes
 app.get('/', (req, res) => {
   res.render('index');
 });
-
-//app.use('/diary-create', require('./lib/diary-create.js'));
 
 app.get('/diary/photos', (req, res) => {
   res.render('diary/photos');
