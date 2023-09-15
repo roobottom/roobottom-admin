@@ -2,6 +2,7 @@
 {% from "../govuk-frontend/components/input/macro.njk" import govukInput %}
 {% from "../govuk-frontend/components/textarea/macro.njk" import govukTextarea %}
 {% from "../govuk-frontend/components/button/macro.njk" import govukButton %}
+{% from "../govuk-frontend/components/checkboxes/macro.njk" import govukCheckboxes %}
 
 {% block content %}
 
@@ -56,6 +57,16 @@
     hint: {
       text: "You can use Markdown."
     }
+  }) }}
+
+  {{ govukCheckboxes({
+    name: "compendium",
+    items: [
+      {
+        value: "false",
+        text: "Hide in the printed book?"
+      }
+    ]
   }) }}
 
   {{ govukButton({

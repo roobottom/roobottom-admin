@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "concurrently \"nodemon index.js\" \"npx node-sass app/sass/ -o public/css & node-sass -w app/sass/ -o public/css\"",
+    "start": "node index.js",
+    "dev": "concurrently \"nodemon index.js\" \"npx node-sass app/sass/ -o public/css & node-sass -w app/sass/ -o public/css\"",
     "test": "mocha"
   },
   "author": "",
@@ -12,6 +13,7 @@
   "dependencies": {
     "@octokit/rest": "^20.0.1",
     "chrono-node": "^2.6.6",
+    "connect-redis": "^7.1.0",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "express-basic-auth": "^1.2.1",

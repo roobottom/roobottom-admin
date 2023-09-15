@@ -9,11 +9,17 @@ app.use(basicAuth);
 app.use(express.static('public'));
 app.use('/uploads', express.static('app/uploads'));
 
-app.use(session({
+let sessionOptions = {
   secret: 'bc633c7b-38e9-47b1-a851-6a132ab11ce8',
   resave: false,
   saveUninitialized: true,
-}));
+};
+
+if (process.env.NODE_ENV === 'production') {
+  sessionOptions.store = new RedisStore({ url: process.env.REDIS_URL });
+}
+
+app.use(session(sessionOptions));
 
 nunjucks.configure('app', {
   autoescape: true,
