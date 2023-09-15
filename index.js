@@ -31,9 +31,9 @@ let sessionOptions = {
   saveUninitialized: true,
 };
 
-if (process.env.NODE_ENV === 'production') {
-  sessionOptions.store = new RedisStore({ client: redisClient, prefix: "myapp:" });
-}
+// if (process.env.NODE_ENV === 'production') {
+//   sessionOptions.store = new RedisStore({ client: redisClient, prefix: "myapp:" });
+// }
 
 app.use(session(sessionOptions));
 
