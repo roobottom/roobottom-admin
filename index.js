@@ -3,6 +3,7 @@ const nunjucks = require('nunjucks');
 const basicAuth = require('./lib/auth.js');
 const session = require('express-session'); 
 const app = express();
+let RedisStore = require('connect-redis')(session);
 
 app.use(express.urlencoded({ extended: true }));
 app.use(basicAuth);
