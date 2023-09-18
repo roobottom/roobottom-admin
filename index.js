@@ -16,7 +16,9 @@ let sessionOptions = {
 };
 
 if (process.env.NODE_ENV === 'production') {
-  let redisClient = createClient()
+  let redisClient = createClient({
+    url: process.env.REDIS_URL
+  })
   redisClient.connect().catch(console.error)
 
   let redisStore = new RedisStore({
