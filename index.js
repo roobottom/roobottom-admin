@@ -2,40 +2,38 @@ const express = require('express');
 const nunjucks = require('nunjucks');
 const basicAuth = require('./lib/auth.js');
 const session = require('express-session');
-const redis = require('redis');
-const app = express();
+const { createClient } = require('redis');
 const RedisStore = require("connect-redis").default;
+
+const app = express();
 const port = process.env.PORT || 3333;
 
-// Initialize the Redis client
-let redisClient;
-if (process.env.NODE_ENV === 'production') {
-  redisClient = redis.createClient({
-    url: process.env.REDIS_URL // Set your Redis server URL here
-  });
-
-  // Handle Redis client errors
-  redisClient.on('error', (err) => {
-    console.error('Redis error:', err);
-  });
-}
-
-app.use(express.urlencoded({ extended: true }));
-app.use(basicAuth);
-app.use(express.static('public'));
-app.use('/uploads', express.static('app/uploads'));
-
+// SESSION ---
 let sessionOptions = {
   secret: 'bc633c7b-38e9-47b1-a851-6a132ab11ce8',
   resave: false,
   saveUninitialized: true,
 };
 
-// if (process.env.NODE_ENV === 'production') {
-//   sessionOptions.store = new RedisStore({ client: redisClient, prefix: "myapp:" });
-// }
+if (process.env.NODE_ENV === 'production') {
+  let redisClient = createClient()
+  redisClient.connect().catch(console.error)
 
+  let redisStore = new RedisStore({
+    client: redisClient,
+    prefix: "roobottom-admin:",
+  })
+
+  sessionOptions.store = redisStore;
+}
 app.use(session(sessionOptions));
+//end:SESSION ---
+
+app.use(express.urlencoded({ extended: true }));
+app.use(basicAuth);
+app.use(express.static('public'));
+app.use('/uploads', express.static('app/uploads'));
+
 
 nunjucks.configure('app', {
   autoescape: true,
