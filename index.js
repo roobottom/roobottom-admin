@@ -44,8 +44,6 @@ nunjucks.configure('app', {
 
 app.set('view engine', 'njk');
 
-
-
 //application routes
 app.get('/', (req, res) => {
   res.render('index');
@@ -73,8 +71,12 @@ app.get('/diary/content', (req, res) => {
   res.render('diary/content');
 });
 
-app.use('/diary/process-content', require('./lib/routes/process-content.js').router);
+app.use('/diary/process-content', require('./lib/routes/process-content.js'));
 
+app.get('/diary/complete', (req, res) => {
+  const data = req.session.data;
+  res.render('diary/complete', data);
+});
 
 app.use((err, req, res, next) => {
   console.error(err.stack);
