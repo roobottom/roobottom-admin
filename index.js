@@ -17,7 +17,8 @@ let sessionOptions = {
 
 if (process.env.NODE_ENV === 'production') {
   let redisClient = createClient({
-    url: process.env.REDIS_URL
+    url: process.env.REDIS_URL,
+    connect_timeout: 10000
   })
   redisClient.connect().catch('There is a problem with Redis', console.error)
 
