@@ -2,8 +2,7 @@ const express = require('express');
 const nunjucks = require('nunjucks');
 const basicAuth = require('./lib/auth.js');
 const session = require('express-session');
-const { createClient } = require('redis');
-const RedisStore = require("connect-redis").default;
+const MongoStore = require('connect-mongo');
 
 const app = express();
 const port = process.env.PORT || 3333;
@@ -16,18 +15,9 @@ let sessionOptions = {
 };
 
 if (process.env.NODE_ENV === 'production') {
-  let redisClient = createClient({
-    url: process.env.REDIS_URL,
-    connect_timeout: 10000
-  })
-  redisClient.connect().catch('There is a problem with Redis', console.error)
-
-  let redisStore = new RedisStore({
-    client: redisClient,
-    prefix: "roobottom-admin:",
-  })
-
-  sessionOptions.store = redisStore;
+  sessionOptions.store = MongoStore.create({
+    mongoUrl: process.env.MONGO_URL
+  });
 }
 app.use(session(sessionOptions));
 //end:SESSION ---
