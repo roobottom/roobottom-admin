@@ -1,15 +1,24 @@
 {% extends "../layouts/wrapper.njk" %}
 {% from "../govuk-frontend/components/file-upload/macro.njk" import govukFileUpload %}
 {% from "../govuk-frontend/components/button/macro.njk" import govukButton %}
+{% from "../govuk-frontend/components/back-link/macro.njk" import govukBackLink %}
+
+{% block beforeContent %}
+{{ govukBackLink({
+  text: "Main menu",
+  href: "/"
+}) }}
+{% endblock %}
 
 {% block content %}
-<h1 class="govuk-heading-xl">Upload photos</h1>
 <form action="/diary/process-photos" method="post" enctype="multipart/form-data">
   {{ govukFileUpload({
     id: "photos",
     name: "photos",
     label: {
-      text: "Choose photos to upload"
+      text: "Choose photos to upload",
+      isPageHeading: true,
+      classes: "govuk-label--xl"
     },
     multiple: true
   }) }}

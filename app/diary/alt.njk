@@ -1,6 +1,14 @@
 {% extends "../layouts/wrapper.njk" %}
 {% from "../govuk-frontend/components/button/macro.njk" import govukButton %}
 {% from "../govuk-frontend/components/input/macro.njk" import govukInput %}
+{% from "../govuk-frontend/components/back-link/macro.njk" import govukBackLink %}
+
+{% block beforeContent %}
+{{ govukBackLink({
+  text: "Main menu",
+  href: "/"
+}) }}
+{% endblock %}
 
 {% block content %}
 <h1 class="govuk-heading-xl">Describe images</h1>

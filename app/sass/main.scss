@@ -3,3 +3,31 @@
 //set GOV.UK vars
 $govuk-font-family: 'Space Grotesk';
 @import "../govuk-frontend/all";
+
+//custom styles
+.main-menu {
+  font-family: $govuk-font-family;
+  ul {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: govuk-spacing(3);
+  }
+  li {
+    
+  }
+  a {
+    //@extend .govuk-link;
+    display: block;
+    border: 1px solid govuk-colour('mid-grey');
+    background-color: govuk-colour('light-grey');
+    padding: govuk-spacing(3);
+    @include govuk-font(19);
+    text-decoration: none;
+    box-sizing: border-box;
+    height: 100%;
+    color: black;
+  }
+}

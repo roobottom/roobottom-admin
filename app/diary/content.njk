@@ -3,6 +3,14 @@
 {% from "../govuk-frontend/components/textarea/macro.njk" import govukTextarea %}
 {% from "../govuk-frontend/components/button/macro.njk" import govukButton %}
 {% from "../govuk-frontend/components/checkboxes/macro.njk" import govukCheckboxes %}
+{% from "../govuk-frontend/components/back-link/macro.njk" import govukBackLink %}
+
+{% block beforeContent %}
+{{ govukBackLink({
+  text: "Main menu",
+  href: "/"
+}) }}
+{% endblock %}
 
 {% block content %}
 
