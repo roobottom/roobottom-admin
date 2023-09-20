@@ -5,6 +5,25 @@ $govuk-font-family: 'Space Grotesk';
 @import "../govuk-frontend/all";
 
 //custom styles
+.header {
+  background-color: #FB8500;
+  font-family: $govuk-font-family;
+
+  &-wrapper {
+    padding: govuk-spacing(3);
+  }
+
+  &-home-link {
+    @include govuk-font(24);
+    color: white;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+}
+
 .main-menu {
   font-family: $govuk-font-family;
   ul {
@@ -15,9 +34,7 @@ $govuk-font-family: 'Space Grotesk';
     grid-template-rows: 1fr 1fr;
     gap: govuk-spacing(3);
   }
-  li {
-    
-  }
+
   a {
     //@extend .govuk-link;
     display: block;

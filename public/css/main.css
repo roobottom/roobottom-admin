@@ -5723,6 +5723,36 @@
     .govuk-\!-width-one-quarter {
       width: 25% !important; } }
 
+.header {
+  background-color: #FB8500;
+  font-family: "Space Grotesk"; }
+  .header-wrapper {
+    padding: 15px; }
+  .header-home-link {
+    font-family: "Space Grotesk";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-weight: 400;
+    font-size: 18px;
+    font-size: 1.125rem;
+    line-height: 1.11111;
+    color: white;
+    text-decoration: none; }
+    @media print {
+      .header-home-link {
+        font-family: sans-serif; } }
+    @media (min-width: 40.0625em) {
+      .header-home-link {
+        font-size: 24px;
+        font-size: 1.5rem;
+        line-height: 1.25; } }
+    @media print {
+      .header-home-link {
+        font-size: 18pt;
+        line-height: 1.15; } }
+    .header-home-link:hover {
+      text-decoration: underline; }
+
 .main-menu {
   font-family: "Space Grotesk"; }
   .main-menu ul {
