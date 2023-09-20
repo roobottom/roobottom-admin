@@ -12,7 +12,10 @@
       isPageHeading: true,
       classes: "govuk-label--xl"
     },
-    multiple: true
+    multiple: true,
+    errorMessage: {
+      text: error.photos
+    } if error
   }) }}
   {{ govukButton({
     text: "Save and continue"
