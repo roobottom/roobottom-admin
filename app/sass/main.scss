@@ -1,13 +1,28 @@
-@import "fonts";
+@font-face {
+  font-family: 'Space Grotesk'; 
+  src: url('/fonts/SpaceGrotesk-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Space Grotesk'; 
+  src: url('/fonts/SpaceGrotesk-Bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+}
 
 //set GOV.UK vars
 $govuk-font-family: 'Space Grotesk';
 @import "../govuk-frontend/all";
 
+body {
+  font-family: $govuk-font-family;
+}
+
 //custom styles
 .header {
   background-color: #FB8500;
-  font-family: $govuk-font-family;
 
   &-wrapper {
     padding: govuk-spacing(3);
@@ -25,7 +40,6 @@ $govuk-font-family: 'Space Grotesk';
 }
 
 .main-menu {
-  font-family: $govuk-font-family;
   ul {
     list-style: none;
     padding: 0;
@@ -47,4 +61,15 @@ $govuk-font-family: 'Space Grotesk';
     height: 100%;
     color: black;
   }
+}
+
+.photo-preview {
+  background-color: govuk-colour('light-grey');
+  margin-bottom: govuk-spacing(5);
+  padding: govuk-spacing(4);
+  &-image {
+    width: 100%;
+    display: block;
+    max-width: 300px;
+  } 
 }

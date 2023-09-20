@@ -54,7 +54,7 @@ app.get('/diary/alt', (req, res) => {
   const photos = req.session.filePaths || [];
   res.render('diary/alt', {
     photos,
-    title: "Describe photos"
+    title: photos.length == 1 ? `Describe this photo` : `Describe ${photos.length} photos`
   });
 });
 
