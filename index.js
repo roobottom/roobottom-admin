@@ -37,7 +37,9 @@ app.set('view engine', 'njk');
 
 //application routes
 app.get('/', (req, res) => {
-  res.render('index');
+  res.render('index', {
+    title: "Choose post type"
+  });
 });
 
 app.get('/diary/photos', (req, res) => {
