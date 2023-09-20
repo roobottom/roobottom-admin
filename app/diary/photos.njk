@@ -1,14 +1,6 @@
 {% extends "../layouts/wrapper.njk" %}
 {% from "../govuk-frontend/components/file-upload/macro.njk" import govukFileUpload %}
 {% from "../govuk-frontend/components/button/macro.njk" import govukButton %}
-{% from "../govuk-frontend/components/back-link/macro.njk" import govukBackLink %}
-
-{% block beforeContent %}
-{{ govukBackLink({
-  text: "Main menu",
-  href: "/"
-}) }}
-{% endblock %}
 
 {% block content %}
 <form action="/diary/process-photos" method="post" enctype="multipart/form-data">
@@ -16,7 +8,7 @@
     id: "photos",
     name: "photos",
     label: {
-      text: "Choose photos to upload",
+      text: title,
       isPageHeading: true,
       classes: "govuk-label--xl"
     },

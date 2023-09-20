@@ -3,7 +3,7 @@
 <html lang="{{ htmlLang | default('en') }}" class="govuk-template {{ htmlClasses }}">
   <head>
     <meta charset="utf-8">
-    <title>{% block pageTitle %}Roobottom Admin{% endblock %}</title>
+    <title>{% block pageTitle %}{{ title }} - Roobottom Admin{% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <meta name="theme-color" content="{{ themeColor | default('#0b0c0c') }}"> {# Hardcoded value of $govuk-black #}
     <meta http-equiv="X-UA-Compatible" content="IE=edge">

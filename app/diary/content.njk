@@ -3,18 +3,9 @@
 {% from "../govuk-frontend/components/textarea/macro.njk" import govukTextarea %}
 {% from "../govuk-frontend/components/button/macro.njk" import govukButton %}
 {% from "../govuk-frontend/components/checkboxes/macro.njk" import govukCheckboxes %}
-{% from "../govuk-frontend/components/back-link/macro.njk" import govukBackLink %}
-
-{% block beforeContent %}
-{{ govukBackLink({
-  text: "Main menu",
-  href: "/"
-}) }}
-{% endblock %}
 
 {% block content %}
-
-<h1 class="govuk-heading-xl">Diary post content</h1>
+<h1 class="govuk-heading-xl">{{ title }}</h1>
 
 <form action="/diary/process-content" method="post">
   {{
@@ -33,12 +24,12 @@
   {{
     govukInput({
       label: {
-        text: "Date"
+        text: "Date and time"
       },
       id: "date",
       name: "date",
       hint: {
-        text: "Use natural language or leave blank for now. Examples: “today” or “last tuesday afternoon”"
+        text: "Examples: “today at 3pm” or “last tuesday afternoon” or blank to set date to now."
       }
     })
   }}
@@ -61,9 +52,6 @@
     id: "content",
     label: {
       text: "Content"
-    },
-    hint: {
-      text: "You can use Markdown."
     }
   }) }}
 

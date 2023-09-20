@@ -41,25 +41,27 @@ app.get('/', (req, res) => {
 });
 
 app.get('/diary/photos', (req, res) => {
-  res.render('diary/photos');
+  res.render('diary/photos', {
+    title: "Upload photos"
+  });
 });
 
 app.use('/diary/process-photos', require('./lib/routes/process-photos.js'));
 
 app.get('/diary/alt', (req, res) => {
-  try {
-    const photos = req.session.filePaths || []; 
-    res.render('diary/alt', { photos });
-  } catch (error) {
-    console.error('Error displaying the next screen', error);
-    res.status(500).send('An error occurred');
-  }
+  const photos = req.session.filePaths || [];
+  res.render('diary/alt', {
+    photos,
+    title: "Describe photos"
+  });
 });
 
 app.use('/diary/process-alt', require('./lib/routes/process-alt.js'));
 
 app.get('/diary/content', (req, res) => {
-  res.render('diary/content');
+  res.render('diary/content', {
+    title: "Post content"
+  });
 });
 
 app.use('/diary/process-content', require('./lib/routes/process-content.js'));
