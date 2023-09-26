@@ -3,6 +3,7 @@ const nunjucks = require('nunjucks');
 const basicAuth = require('./lib/auth.js');
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
+const _ = require('lodash')
 
 const app = express();
 const port = process.env.PORT || 3333;
@@ -69,7 +70,18 @@ app.get('/diary/content', (req, res) => {
 app.use('/diary/process-content', require('./lib/routes/process-content.js'));
 
 app.get('/diary/complete', (req, res) => {
-  const data = req.session.data;
+  // Deep clone the data object
+  const data = _.cloneDeep(req.session.data);
+
+  // Destroy the session
+  req.session.destroy((err) => {
+    if (err) {
+      // Handle error
+      console.log("Could not destroy session:", err);
+    }
+  });
+
+  // Render the view
   res.render('diary/complete', data);
 });
 
