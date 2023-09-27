@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "dev": "concurrently \"nodemon index.js\" \"npx node-sass app/sass/main.scss -o public/css & node-sass -w app/sass/main.scss  -o public/css\"",
+    "dev": "npx concurrently \"nodemon index.js\" \"npx node-sass app/sass/main.scss -o public/css & node-sass -w app/sass/main.scss  -o public/css\"",
     "test": "mocha"
   },
   "author": "",

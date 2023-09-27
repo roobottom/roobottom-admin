@@ -1,0 +1,68 @@
+{% extends "layouts/wrapper.njk" %}
+{% from "../govuk-frontend/components/input/macro.njk" import govukInput %}
+{% from "../govuk-frontend/components/textarea/macro.njk" import govukTextarea %}
+{% from "../govuk-frontend/components/button/macro.njk" import govukButton %}
+{% from "../govuk-frontend/components/checkboxes/macro.njk" import govukCheckboxes %}
+{% from "../govuk-frontend/components/radios/macro.njk" import govukRadios %}
+
+{% block content %}
+<h1 class="govuk-heading-xl">{{ title }}</h1>
+
+<form action="/diary/process-content" method="post">
+  
+  {{ govukTextarea({
+    name: "summary",
+    id: "summary",
+    label: {
+      text: "What did they say?"
+    }
+  }) }}
+
+  {{ govukRadios({
+    name: "cite",
+    fieldset: {
+      legend: {
+        text: "Who said it?"
+      }
+    },
+    items: [
+      {
+        value: "Roo",
+        text: "Ember"
+      },
+      {
+        value: "Rootwo",
+        text: "Jude"
+      }
+    ]
+  }) }}
+
+  {{
+    govukInput({
+      label: {
+        text: "Date and time"
+      },
+      id: "date",
+      name: "date",
+      hint: {
+        text: "Examples: “today at 3pm” or “last tuesday afternoon” or blank to set date to now."
+      }
+    })
+  }}
+
+  {{ govukCheckboxes({
+    name: "compendium",
+    items: [
+      {
+        value: "false",
+        text: "Hide in the printed book?"
+      }
+    ]
+  }) }}
+
+  {{ govukButton({
+    text: "Save and continue"
+  }) }}
+
+</form>
+{% endblock %}

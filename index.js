@@ -70,19 +70,19 @@ app.get('/diary/content', (req, res) => {
 app.use('/diary/process-content', require('./lib/routes/process-content.js'));
 
 app.get('/diary/complete', (req, res) => {
-  // Deep clone the data object
   const data = _.cloneDeep(req.session.data);
-
-  // Destroy the session
   req.session.destroy((err) => {
     if (err) {
-      // Handle error
       console.log("Could not destroy session:", err);
     }
   });
-
-  // Render the view
   res.render('diary/complete', data);
+});
+
+app.get('/quote/content', (req, res) => {
+  res.render('quote/content', {
+    title: 'Quote'
+  })
 });
 
 app.use((err, req, res, next) => {
