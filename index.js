@@ -49,7 +49,7 @@ app.get('/diary/photos', (req, res) => {
   });
 });
 
-app.use('/diary/process-photos', require('./lib/routes/process-photos.js'));
+app.use('/diary/process-photos', require('./lib/diary/process-photos.js'));
 
 app.get('/diary/alt', (req, res) => {
   const photos = req.session.filePaths || [];
@@ -59,7 +59,7 @@ app.get('/diary/alt', (req, res) => {
   });
 });
 
-app.use('/diary/process-alt', require('./lib/routes/process-alt.js'));
+app.use('/diary/process-alt', require('./lib/diary/process-alt.js'));
 
 app.get('/diary/content', (req, res) => {
   res.render('diary/content', {
@@ -67,7 +67,7 @@ app.get('/diary/content', (req, res) => {
   });
 });
 
-app.use('/diary/process-content', require('./lib/routes/process-content.js'));
+app.use('/diary/process-content', require('./lib/diary/process-content.js'));
 
 app.get('/diary/complete', (req, res) => {
   const data = _.cloneDeep(req.session.data);
@@ -83,6 +83,18 @@ app.get('/quote/content', (req, res) => {
   res.render('quote/content', {
     title: 'Quote'
   })
+});
+
+app.use('/quote/process-content', require('./lib/quote/process-content.js'));
+
+app.get('/quote/complete', (req, res) => {
+  const data = _.cloneDeep(req.session.data);
+  req.session.destroy((err) => {
+    if (err) {
+      console.log("Could not destroy session:", err);
+    }
+  });
+  res.render('quote/complete', data);
 });
 
 app.use((err, req, res, next) => {

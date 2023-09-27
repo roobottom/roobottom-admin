@@ -63,34 +63,4 @@
 {{ govukSummaryList({
   rows: rows
 }) }}
-
-{# <dl class="summary">
-  <div class="summary-row">
-    <dt>Summary</dt>
-    <dd>{{ summary }}</dd>
-  </div>
-  <div class="summary-row">
-    <dt>Date</dt>
-    <dd>{{ date }}</dd>
-  </div>
-  <div class="summary-row">
-    <dt>Tags</dt>
-    <dd>{{ tags }}</dd>
-  </div>
-  <div class="summary-row">
-    <dt>Content</dt>
-    <dd>{{ content }}</dd>
-  </div>
-  {% for photo in photos %}
-  <div class="summary-row">
-    <dt>Photo {{ loop.index }}</dt>
-    <dd><img src="/{{ photo.url }}" width="300"></dd>
-  </div>
-  <div class="summary-row">
-    <dt>Description of photo {{ loop.index }}</dt>
-    <dd>{{ photo.alt }}</dd>
-  </div>
-  {% endfor %}
-  
-</dl> #}
 {% endblock %}

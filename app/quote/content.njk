@@ -8,14 +8,21 @@
 {% block content %}
 <h1 class="govuk-heading-xl">{{ title }}</h1>
 
-<form action="/diary/process-content" method="post">
+<form action="/quote/process-content" method="post">
   
   {{ govukTextarea({
     name: "summary",
     id: "summary",
     label: {
       text: "What did they say?"
-    }
+    },
+    hint: {
+      text: "You don’t need quote marks"
+    },
+    errorMessage: {
+      text: error.summary
+    } if error.summary,
+    value: existingData.summary
   }) }}
 
   {{ govukRadios({
@@ -28,13 +35,16 @@
     items: [
       {
         value: "Roo",
-        text: "Ember"
+        text: "Roo"
       },
       {
         value: "Rootwo",
-        text: "Jude"
+        text: "Rootwo"
       }
-    ]
+    ],
+    errorMessage: {
+      text: error.cite
+    } if error.cite
   }) }}
 
   {{
@@ -46,7 +56,8 @@
       name: "date",
       hint: {
         text: "Examples: “today at 3pm” or “last tuesday afternoon” or blank to set date to now."
-      }
+      },
+      value: existingData.date
     })
   }}
 
