@@ -1,34 +1,28 @@
 {% extends "layouts/wrapper.njk" %}
-{% from "../govuk-frontend/components/summary-list/macro.njk" import govukSummaryList %}
-{% from "../govuk-frontend/components/panel/macro.njk" import govukPanel %}
-
-{% set rows = [
-    {
-      key: {
-        text: cite + " said"
-      },
-      value: {
-        text: summary
-      }
-    },{
-      key: {
-        text: "Date"
-      },
-      value: {
-        text: date
-      }
-    }
-] %}
-
 
 {% block content %}
-{{ govukPanel({
-  titleText: "Quote created"
-}) }}
+  {{ govukPanel({
+    titleText: "Quote created"
+  }) }}
 
-
-
-{{ govukSummaryList({
-  rows: rows
-}) }}
+  {{ govukSummaryList({
+    rows: [
+      {
+        key: {
+          text: cite + " said"
+        },
+        value: {
+          text: summary
+        }
+      },
+      {
+        key: {
+          text: "Date"
+        },
+        value: {
+          text: date
+        }
+      }
+    ]
+  }) }}
 {% endblock %}

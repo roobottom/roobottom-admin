@@ -1,79 +1,79 @@
 {% extends "layouts/wrapper.njk" %}
-{% from "../govuk-frontend/components/input/macro.njk" import govukInput %}
-{% from "../govuk-frontend/components/textarea/macro.njk" import govukTextarea %}
-{% from "../govuk-frontend/components/button/macro.njk" import govukButton %}
-{% from "../govuk-frontend/components/checkboxes/macro.njk" import govukCheckboxes %}
-{% from "../govuk-frontend/components/radios/macro.njk" import govukRadios %}
+
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+{% from "govuk/components/textarea/macro.njk" import govukTextarea %}
 
 {% block content %}
-<h1 class="govuk-heading-xl">{{ title }}</h1>
+  <h1 class="govuk-heading-xl">{{ title }}</h1>
 
-<form action="/quote/process-content" method="post">
-  
-  {{ govukTextarea({
-    name: "summary",
-    id: "summary",
-    label: {
-      text: "What did they say?"
-    },
-    hint: {
-      text: "You don’t need quote marks"
-    },
-    errorMessage: {
-      text: error.summary
-    } if error.summary,
-    value: existingData.summary
-  }) }}
-
-  {{ govukRadios({
-    name: "cite",
-    fieldset: {
-      legend: {
-        text: "Who said it?"
-      }
-    },
-    items: [
-      {
-        value: "Roo",
-        text: "Roo"
-      },
-      {
-        value: "Rootwo",
-        text: "Rootwo"
-      }
-    ],
-    errorMessage: {
-      text: error.cite
-    } if error.cite
-  }) }}
-
-  {{
-    govukInput({
+  <form action="/quote/process-content" method="post">
+    {{ govukTextarea({
+      id: "summary",
+      name: "summary",
       label: {
-        text: "Date and time"
+        classes: "govuk-label--s",
+        text: "What did they say?"
       },
+      hint: {
+        text: "You don’t need quote marks"
+      },
+      errorMessage: {
+        text: error.summary
+      } if error.summary,
+      value: existingData.summary
+    }) }}
+
+    {{ govukRadios({
+      name: "cite",
+      fieldset: {
+        legend: {
+          classes: "govuk-fieldset__legend--s",
+          text: "Who said it?"
+        }
+      },
+      items: [
+        {
+          value: "Roo",
+          text: "Roo"
+        },
+        {
+          value: "Rootwo",
+          text: "Rootwo"
+        }
+      ],
+      errorMessage: {
+        text: error.cite
+      } if error.cite
+    }) }}
+
+    {{ govukInput({
       id: "date",
       name: "date",
+      label: {
+        classes: "govuk-label--s",
+        text: "Date and time"
+      },
       hint: {
-        text: "Examples: “today at 3pm” or “last tuesday afternoon” or blank to set date to now."
+        text: "For example ‘today at 3pm’ or ‘last tuesday afternoon’. Leave blank to set date to now."
       },
       value: existingData.date
-    })
-  }}
+    }) }}
 
-  {{ govukCheckboxes({
-    name: "compendium",
-    items: [
-      {
-        value: "false",
-        text: "Hide in the printed book?"
-      }
-    ]
-  }) }}
+    {{ govukCheckboxes({
+      name: "compendium",
+      items: [
+        {
+          value: "false",
+          text: "Hide in the printed book?"
+        }
+      ]
+    }) }}
 
-  {{ govukButton({
-    text: "Save and continue"
-  }) }}
-
-</form>
+    {{ govukButton({
+      text: "Save and continue"
+    }) }}
+  </form>
 {% endblock %}

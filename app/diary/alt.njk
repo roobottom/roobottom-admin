@@ -1,25 +1,29 @@
-{% extends "../layouts/wrapper.njk" %}
-{% from "../govuk-frontend/components/button/macro.njk" import govukButton %}
-{% from "../govuk-frontend/components/input/macro.njk" import govukInput %}
+{% extends "layouts/wrapper.njk" %}
+
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
 
 {% block content %}
-<h1 class="govuk-heading-xl">{{ title }}</h1>
-<form action="/diary/process-alt" method="post">
-{% for photo in photos %}
-  <div class="photo-preview">
-    {{ govukInput({
-      label: {
-        text: "What's happening in this photo?"
-      },
-      id: "alt-" + loop.index0,
-      name: "alt-" + loop.index0,
-      classes: 'govuk-!-margin-bottom-5'
+  <h1 class="govuk-heading-xl">{{ title }}</h1>
+
+  <form action="/diary/process-alt" method="post">
+    {% for photo in photos %}
+      <div class="app-photo-preview">
+        {{ govukInput({
+          id: "alt-" + loop.index0,
+          name: "alt-" + loop.index0,
+          label: {
+            classes: "govuk-label--s",
+            text: "What’s happening in this photo?"
+          },
+          classes: "govuk-!-margin-bottom-5"
+        }) }}
+        <img src="/{{ photo.url }}" class="app-photo-preview__image">
+      </div>
+    {% endfor %}
+
+    {{ govukButton({
+      text: "Save and continue"
     }) }}
-    <img src="/{{ photo.url }}" class="photo-preview-image">
-  </div>
-{% endfor %}
-{{ govukButton({
-  text: "Save and continue"
-}) }}
-</form>
+  </form>
 {% endblock %}

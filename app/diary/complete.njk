@@ -1,52 +1,64 @@
 {% extends "layouts/wrapper.njk" %}
-{% from "../govuk-frontend/components/summary-list/macro.njk" import govukSummaryList %}
-{% from "../govuk-frontend/components/panel/macro.njk" import govukPanel %}
+
+{% from "govuk/components/panel/macro.njk" import govukPanel %}
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
 
 {% set photoRows = [] %}
 {% if photos %}
   {% for photo in photos %}
     {% set row = {
-      key: { text: "Photo " + loop.index },
-      value: { html: '<img src="/' + photo.url + '" width="300">' }
+      key: {
+        text: "Photo " + loop.index
+      },
+      value: {
+        html: '<img src="/' + photo.url + '" width="300">'
+      }
     } %}
     {% set descriptionRow = {
-      key: { text: "Description of photo " + loop.index },
-      value: { text: photo.alt }
+      key: {
+        text: "Description of photo " + loop.index
+      },
+      value: {
+        text: photo.alt
+      }
     } %}
     {% set photoRows = photoRows.concat([row, descriptionRow]) %}
   {% endfor %}
 {% endif %}
 
 {% set rows = [
-    {
-      key: {
-        text: "Summary"
-      },
-      value: {
-        text: summary
-      }
-    },{
-      key: {
-        text: "Date"
-      },
-      value: {
-        text: date
-      }
-    },{
-      key: {
-        text: "Tags"
-      },
-      value: {
-        text: tags
-      }
-    } if tags,{
-      key: {
-        text: "Content"
-      },
-      value: {
-        text: content
-      }
+  {
+    key: {
+      text: "Summary"
+    },
+    value: {
+      text: summary
     }
+  },
+  {
+    key: {
+      text: "Date"
+    },
+    value: {
+      text: date
+    }
+  },
+  {
+    key: {
+      text: "Tags"
+    },
+    value: {
+      text: tags
+    }
+  } if tags,
+  {
+    key: {
+      text: "Content"
+    },
+    value: {
+      text: content
+    }
+  }
 ] %}
 
 {% for photoRow in photoRows %}
@@ -54,13 +66,11 @@
 {% endfor %}
 
 {% block content %}
-{{ govukPanel({
-  titleText: "Diary post created"
-}) }}
+  {{ govukPanel({
+    titleText: "Diary post created"
+  }) }}
 
-
-
-{{ govukSummaryList({
-  rows: rows
-}) }}
+  {{ govukSummaryList({
+    rows: rows
+  }) }}
 {% endblock %}

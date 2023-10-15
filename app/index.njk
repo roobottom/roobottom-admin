@@ -1,13 +1,14 @@
 {% extends "layouts/wrapper.njk" %}
 
 {% block content %}
-<h1 class="govuk-heading-xl">{{ title }}</h1>
-<nav class="main-menu">
-  <ul>
-    <li><a href="/diary/photos">Diary post with photos</a></li>
-    <li><a href="/diary/content">Diary post without photos</a></li>
-    <li><a href="/quote/content">Quote</a></li>
-    <li><a href="#">Beer</a></li>
-  </ul>
-</nav>
+  <h1 class="govuk-heading-xl">{{ title }}</h1>
+
+  <nav class="app-main-menu">
+    <ul class="govuk-list">
+      <li><a href="/diary/photos">Diary post with photos</a></li>
+      <li><a href="/diary/content">Diary post without photos</a></li>
+      <li><a href="/quote/content">Quote</a></li>
+      <li><a href="#">Beer</a></li>
+    </ul>
+  </nav>
 {% endblock %}

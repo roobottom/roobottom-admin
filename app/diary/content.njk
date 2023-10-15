@@ -1,73 +1,71 @@
 {% extends "layouts/wrapper.njk" %}
-{% from "../govuk-frontend/components/input/macro.njk" import govukInput %}
-{% from "../govuk-frontend/components/textarea/macro.njk" import govukTextarea %}
-{% from "../govuk-frontend/components/button/macro.njk" import govukButton %}
-{% from "../govuk-frontend/components/checkboxes/macro.njk" import govukCheckboxes %}
+
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/textarea/macro.njk" import govukTextarea %}
 
 {% block content %}
-<h1 class="govuk-heading-xl">{{ title }}</h1>
+  <h1 class="govuk-heading-xl">{{ title }}</h1>
 
-<form action="/diary/process-content" method="post">
-  {{
-    govukInput({
-      label: {
-        text: "Summary"
-      },
+  <form action="/diary/process-content" method="post">
+    {{ govukInput({
       id: "summary",
       name: "summary",
+      label: {
+        classes: "govuk-label--s",
+        text: "Summary"
+      },
       hint: {
         text: "What this post is about in a few words"
       }
-    })
-  }}
+    }) }}
 
-  {{
-    govukInput({
-      label: {
-        text: "Date and time"
-      },
+    {{ govukInput({
       id: "date",
       name: "date",
-      hint: {
-        text: "Examples: “today at 3pm” or “last tuesday afternoon” or blank to set date to now."
-      }
-    })
-  }}
-
-  {{
-    govukInput({
       label: {
+        classes: "govuk-label--s",
+        text: "Date and time"
+      },
+      hint: {
+        text: "For example ‘today at 3pm’ or ‘last tuesday afternoon’. Leave blank to set date to now."
+      }
+    }) }}
+
+    {{ govukInput({
+      id: "tags",
+      name: "tags",
+      label: {
+        classes: "govuk-label--s",
         text: "Tags"
       },
       hint: {
-        text: "comma seperated list"
-      },
-      id: "tags",
-      name: "tags"
-    })
-  }}
-
-  {{ govukTextarea({
-    name: "content",
-    id: "content",
-    label: {
-      text: "Content"
-    }
-  }) }}
-
-  {{ govukCheckboxes({
-    name: "compendium",
-    items: [
-      {
-        value: "false",
-        text: "Hide in the printed book?"
+        text: "Comma seperated list"
       }
-    ]
-  }) }}
+    }) }}
 
-  {{ govukButton({
-    text: "Save and continue"
-  }) }}
+    {{ govukTextarea({
+      id: "content",
+      name: "content",
+      label: {
+        classes: "govuk-label--s",
+        text: "Content"
+      }
+    }) }}
 
-</form>
+    {{ govukCheckboxes({
+      name: "compendium",
+      items: [
+        {
+          value: "false",
+          text: "Hide in the printed book?"
+        }
+      ]
+    }) }}
+
+    {{ govukButton({
+      text: "Save and continue"
+    }) }}
+  </form>
 {% endblock %}

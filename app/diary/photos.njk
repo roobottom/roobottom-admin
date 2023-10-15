@@ -1,24 +1,26 @@
-{% extends "../layouts/wrapper.njk" %}
-{% from "../govuk-frontend/components/file-upload/macro.njk" import govukFileUpload %}
-{% from "../govuk-frontend/components/button/macro.njk" import govukButton %}
+{% extends "layouts/wrapper.njk" %}
+
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/file-upload/macro.njk" import govukFileUpload %}
 
 {% block content %}
-<form action="/diary/process-photos" method="post" enctype="multipart/form-data">
-  {{ govukFileUpload({
-    id: "photos",
-    name: "photos",
-    label: {
-      text: title,
-      isPageHeading: true,
-      classes: "govuk-label--xl"
-    },
-    multiple: true,
-    errorMessage: {
-      text: error.photos
-    } if error
-  }) }}
-  {{ govukButton({
-    text: "Save and continue"
-  }) }}
-</form>
+  <form action="/diary/process-photos" method="post" enctype="multipart/form-data">
+    {{ govukFileUpload({
+      id: "photos",
+      name: "photos",
+      label: {
+        classes: "govuk-label--xl",
+        text: title,
+        isPageHeading: true
+      },
+      multiple: true,
+      errorMessage: {
+        text: error.photos
+      } if error
+    }) }}
+
+    {{ govukButton({
+      text: "Save and continue"
+    }) }}
+  </form>
 {% endblock %}
