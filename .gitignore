@@ -1,6 +1,5 @@
 .DS_Store
-/node_modules
 .env
-/app/assets/css
+/node_modules
 /public/uploads
 dump.rdp
