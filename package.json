@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node index.js",
     "dev": "npx concurrently \"nodemon index.js\" \"npx node-sass app/sass/main.scss -o public/css & node-sass -w app/sass/main.scss  -o public/css\"",
-    "test": "mocha"
+    "test": "node --test"
   },
   "author": "",
   "license": "ISC",
@@ -25,17 +25,12 @@
     "lodash": "^4.17.21",
     "mime": "^3.0.0",
     "multer": "^1.4.5-lts.1",
-    "nock": "^13.3.3",
     "node-sass": "^9.0.0",
     "nunjucks": "^3.2.4",
     "octokit-commit-multiple-files": "^5.0.0"
   },
   "devDependencies": {
-    "chai": "^4.3.8",
     "concurrently": "^8.2.1",
-    "jest": "^29.7.0",
-    "mocha": "^10.2.0",
-    "nodemon": "^3.0.1",
-    "supertest": "^6.3.3"
+    "nodemon": "^3.0.1"
   }
 }
