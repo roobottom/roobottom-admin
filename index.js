@@ -25,7 +25,7 @@ app.use(session(sessionOptions));
 //end:SESSION ---
 
 app.use(express.urlencoded({ extended: true }));
-app.use(basicAuth);
+// app.use(basicAuth);
 app.use(express.static('public'));
 app.use('/uploads', express.static('app/uploads'));
 

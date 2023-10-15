@@ -1,48 +1,52 @@
 @font-face {
-  font-family: 'Space Grotesk'; 
-  src: url('/fonts/SpaceGrotesk-Regular.woff') format('woff');
-  font-weight: normal;
+  font-family: "Space Grotesk";
   font-style: normal;
+  font-weight: normal;
+  src: url("/fonts/SpaceGrotesk-Regular.woff") format("woff");
 }
 
 @font-face {
-  font-family: 'Space Grotesk'; 
-  src: url('/fonts/SpaceGrotesk-Bold.woff') format('woff');
-  font-weight: bold;
+  font-family: "Space Grotesk";
   font-style: normal;
+  font-weight: bold;
+  src: url("/fonts/SpaceGrotesk-Bold.woff") format("woff");
 }
 
-//set GOV.UK vars
-$govuk-font-family: 'Space Grotesk';
-@import "../govuk-frontend/all";
+// GOV.UK Frontend settings
+$govuk-brand-colour: #fb8500;
+$govuk-border-width-form-element: 1px;
+$govuk-button-background-colour: #1f9ebc;
+$govuk-focus-colour: #8dcae6;
+$govuk-link-colour: #000;
+$govuk-link-hover-colour: #023047;
+$govuk-font-family: "Space Grotesk";
 
-body {
-  font-family: $govuk-font-family;
-}
+@import "node_modules/govuk-frontend/govuk/all";
 
-//custom styles
-.header {
-  background-color: #FB8500;
-
-  &-wrapper {
-    padding: govuk-spacing(3);
+// Custom styles
+.govuk-header {
+  &__container {
+    border-bottom: none;
+    padding-top: govuk-spacing(3);
   }
 
-  &-home-link {
-    @include govuk-font(24);
-    color: white;
-    text-decoration: none;
-    &:hover {
-      text-decoration: underline;
-    }
+  &__logo {
+    margin-bottom: govuk-spacing(3);
   }
 
+  &__link--homepage {
+    @include govuk-typography-responsive(24);
+    font-weight: normal;
+  }
+
+  &.app-header {
+    background-color: $govuk-brand-colour;
+    border-bottom: none;
+  }
 }
 
-.main-menu {
-  ul {
-    list-style: none;
-    padding: 0;
+.app-main-menu {
+  .govuk-list {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
@@ -50,26 +54,26 @@ body {
   }
 
   a {
-    //@extend .govuk-link;
-    display: block;
-    border: 1px solid govuk-colour('mid-grey');
-    background-color: govuk-colour('light-grey');
-    padding: govuk-spacing(3);
-    @include govuk-font(19);
-    text-decoration: none;
+    @include govuk-link-common;
+    @include govuk-link-style-no-underline;
+    @include govuk-link-style-no-visited-state;
+    background-color: govuk-colour("light-grey");
+    border: 1px solid govuk-colour("mid-grey");
     box-sizing: border-box;
+    display: block;
     height: 100%;
-    color: black;
+    padding: govuk-spacing(3);
   }
 }
 
-.photo-preview {
-  background-color: govuk-colour('light-grey');
+.app-photo-preview {
+  background-color: govuk-colour("light-grey");
   margin-bottom: govuk-spacing(5);
   padding: govuk-spacing(4);
-  &-image {
-    width: 100%;
+
+  &__image {
     display: block;
     max-width: 300px;
-  } 
+    width: 100%;
+  }
 }
