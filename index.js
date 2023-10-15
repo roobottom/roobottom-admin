@@ -1,3 +1,4 @@
+const path = require('node:path');
 const express = require('express');
 const nunjucks = require('nunjucks');
 const basicAuth = require('./lib/auth.js');
@@ -28,15 +29,24 @@ app.use(basicAuth);
 app.use(express.static('public'));
 app.use('/uploads', express.static('app/uploads'));
 
+const views = [
+  'node_modules/govuk-frontend/',
+  'app'
+]
 
-nunjucks.configure('app', {
+nunjucks.configure(views, {
   autoescape: true,
   express: app,
 });
 
 app.set('view engine', 'njk');
 
-//application routes
+// Serve GOV.UK Frontend assets
+app.use('/assets', express.static(
+  path.join(__dirname, '/node_modules/govuk-frontend/govuk/assets'))
+)
+
+// Application routes
 app.get('/', (req, res) => {
   res.render('index', {
     title: "Choose post type"
@@ -119,8 +129,6 @@ app.use((err, req, res, next) => {
     },
   });
 });
-
-
 
 app.listen(port, () => {
   console.log(`Server is running on port http://localhost:${port}`);
