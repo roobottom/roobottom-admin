@@ -1,6 +1,6 @@
 {% extends "../layouts/wrapper.njk" %}
-{% from "../govuk-frontend/components/file-upload/macro.njk" import govukFileUpload %}
-{% from "../govuk-frontend/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/file-upload/macro.njk" import govukFileUpload %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
 
 {% block content %}
 <form action="/diary/process-photos" method="post" enctype="multipart/form-data">
