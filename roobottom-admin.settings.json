@@ -6,5 +6,5 @@
   "committerEmail": "roo@roodesign.co.uk",
   "uploadsPath": "public/uploads/",
   "uploadsUrl": "uploads/",
-  "remoteUrl": "/assets/images/diary/"
+  "imagekitFolder": "/assets/images/diary/"
 }

@@ -7,7 +7,7 @@
   {% for photo in photos %}
     {% set row = {
       key: { text: "Photo " + loop.index },
-      value: { html: '<img src="/' + photo.url + '" width="300">' }
+      value: { html: '<img src="' + photo.url + '" width="300">' }
     } %}
     {% set descriptionRow = {
       key: { text: "Description of photo " + loop.index },
