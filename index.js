@@ -1,3 +1,4 @@
+const path = require('node:path');
 const express = require('express');
 const nunjucks = require('nunjucks');
 const basicAuth = require('./lib/auth.js');
@@ -28,13 +29,21 @@ app.use(basicAuth);
 app.use(express.static('public'));
 app.use('/uploads', express.static('app/uploads'));
 
+const views = [
+  'node_modules/govuk-frontend/',
+  'app'
+]
 
-nunjucks.configure('app', {
+nunjucks.configure(views, {
   autoescape: true,
   express: app,
-});
+})
 
 app.set('view engine', 'njk');
+
+app.use('/assets', express.static(
+  path.join(__dirname, '/node_modules/govuk-frontend/govuk/assets'))
+)
 
 //application routes
 app.get('/', (req, res) => {

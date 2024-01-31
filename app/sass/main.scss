@@ -1,26 +1,29 @@
 @font-face {
-  font-family: 'Space Grotesk'; 
-  src: url('/fonts/SpaceGrotesk-Regular.woff') format('woff');
-  font-weight: normal;
+  font-family: "Space Grotesk";
   font-style: normal;
+  font-weight: normal;
+  src: url("/fonts/SpaceGrotesk-Regular.woff") format("woff");
 }
 
 @font-face {
-  font-family: 'Space Grotesk'; 
-  src: url('/fonts/SpaceGrotesk-Bold.woff') format('woff');
-  font-weight: bold;
+  font-family: "Space Grotesk";
   font-style: normal;
+  font-weight: bold;
+  src: url("/fonts/SpaceGrotesk-Bold.woff") format("woff");
 }
 
-//set GOV.UK vars
-$govuk-font-family: 'Space Grotesk';
-@import "../govuk-frontend/all";
+// GOV.UK Frontend settings
+$govuk-brand-colour: #fb8500;
+$govuk-border-width-form-element: 1px;
+$govuk-button-background-colour: #1f9ebc;
+$govuk-focus-colour: #8dcae6;
+$govuk-link-colour: #000;
+$govuk-link-hover-colour: #023047;
+$govuk-font-family: "Space Grotesk";
 
-body {
-  font-family: $govuk-font-family;
-}
+@import "node_modules/govuk-frontend/govuk/all";
 
-//custom styles
+// Custom styles
 .header {
   background-color: #FB8500;
 
@@ -36,7 +39,6 @@ body {
       text-decoration: underline;
     }
   }
-
 }
 
 .main-menu {

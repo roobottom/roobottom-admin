@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "npx node-sass app/sass/main.scss -o public/css && node index.js",
     "dev": "npx concurrently \"nodemon index.js\" \"npx node-sass app/sass/main.scss -o public/css & node-sass -w app/sass/main.scss  -o public/css\"",
     "test": "mocha"
   },
